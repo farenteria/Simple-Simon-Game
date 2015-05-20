@@ -1,0 +1,27 @@
+.section{
+	height: 250px;
+}
+
+#container{
+	background-color: #E5CC67;
+	border: 1px solid black;
+	height: 500px;
+	width: 500px;
+	margin: 0 auto;
+}
+
+#green{
+	background-color: #0CA02F;
+}
+
+#red{
+	background-color: #D30A0A;
+}
+
+#yellow{
+	background-color: #FCFC71;
+}
+
+#blue{
+	background-color: #1D60E5;
+}
