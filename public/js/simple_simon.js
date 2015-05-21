@@ -39,17 +39,13 @@
 		colorButtonsQueue.push(id);
 	}
 
-	function highlighter(){
-		$(colorButtonsQueue[index]).effect("highlight", highlightColor);
-	}
-
 	//when each round starts, Simon will highlight the colors in the order you need to press 
 	function iterateColors(){
 		var interval = 1000;
 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
-				highlighter();
+				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
 				console.log("colorButtonsQueue[index].html + highlighted");
 				index++;
 			} 
