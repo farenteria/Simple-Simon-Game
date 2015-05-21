@@ -3,9 +3,6 @@
 }
 
 #container{
-	background-color: #E5CC67;
-	border: 1px solid black;
-	height: 500px;
 	width: 500px;
 	margin: 0 auto;
 }
@@ -24,4 +21,12 @@
 
 #blue{
 	background-color: #1D60E5;
+}
+
+#start-button{
+	margin: 1px;
+}
+
+#lights-box{
+	border: 1px solid black;
 }
