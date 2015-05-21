@@ -2,38 +2,17 @@
 (function(){
 	var colors = ["green", "red", "yellow", "blue"];
 	var playing = false;
-	var colorQueue = [];
 	var startButton = $("#start-button");
 	var colorButtonsQueue = [];
 	var index = 0;
 	var highlightColor;
-	// var intervalId;
 
 	function playGame(){
-		var i = 0;
-		var interval = 1000;
-
-		//change to playing
-		while(i < 5){
-			addNewColor();
-			i++;
-
-			var intervalId = setInterval(function(){
-				if(index < colorButtonsQueue.length){
-					highlighter();
-					console.log("colorButtonsQueue[index].html + highlighted");
-					index++;
-				} else{
-					clearInterval(intervalId);
-					console.log(colorButtonsQueue.length);
-				}
-			}, interval);
-
-			index = 0;
-		}
+		addNewColor();
+		iterateColors();
 	}
 
-	// a random color will be pushed to our colorButtons array
+	// a random color will be pushed to our colorButtonsQueue array
 	function addNewColor(){
 		var id;
 		var random = Math.floor(Math.random() * colors.length);
@@ -62,6 +41,21 @@
 
 	function highlighter(){
 		$(colorButtonsQueue[index]).effect("highlight", highlightColor);
+	}
+
+	//when each round starts, Simon will highlight the colors in the order you need to press 
+	function iterateColors(){
+		var interval = 1000;
+
+		var intervalId = setInterval(function(){
+			if(index < colorButtonsQueue.length){
+				highlighter();
+				console.log("colorButtonsQueue[index].html + highlighted");
+				index++;
+			} 
+		}, interval);
+
+		index = 0;
 	}
 
 	startButton.click(function(){
