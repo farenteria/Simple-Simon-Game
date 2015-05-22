@@ -44,48 +44,51 @@
 
 	//when each round starts, Simon will highlight the colors in the order you need to press 
 	function iterateColors(){
-		var interval = 1000;
+		var interval = 700;
 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
-				$(colorButtonsQueue[index]).effect("highlight", highlightColor, 1000);
+				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
 				index++;
 			} else{
+				index = 0;
 				clearInterval(intervalId);
+				console.log(index);
 			}
 		}, interval);
-
-		index = 0;
 	}
 
 	//every color click is saved for easy comparison
-	function saveClick(event){
+	function checkClick(event){
 		colorClicked.push(event.target.id);
 
-		if(index >= colorButtonsQueue.length){
-			$("#current-score").text(++score);
-			startRound();
-		} else if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
+		console.log(index);
+		if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
 			endGame();
 		} else{
 			index++;
 			console.log(index);
 		}
 
+		if(index >= colorButtonsQueue.length){
+			$("#current-score").text(++score);
+			startRound();
+		} 
+
 		console.log(colorClicked);
 		console.log(colorButtonsQueue);
 	}
 
 	function endGame(){
-
+		console.log("lose");
 	}
 
 	startButton.click(function(){
 		playing = true;
-		$("#green").click(saveClick);
-		$("#red").click(saveClick);
-		$("#yellow").click(saveClick);
-		$("#blue").click(saveClick);
+		$("#green").on("click", checkClick);
+		$("#red").on("click", checkClick);
+		$("#yellow").on("click", checkClick);
+		$("#blue").on("click", checkClick);
 
 		startRound();
 	});
