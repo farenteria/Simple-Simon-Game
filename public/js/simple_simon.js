@@ -5,10 +5,12 @@
 	var startButton = $("#start-button");
 	var colorButtonsQueue = [];
 	var index = 0;
+	var delay = 5000;
+	var score = 0;
 	var highlightColor;
-	var colorClicked;
+	var colorClicked = [];
 
-	function playGame(){
+	function startRound(){
 		addNewColor();
 		iterateColors();
 	}
@@ -46,19 +48,36 @@
 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
-				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
+				$(colorButtonsQueue[index]).effect("highlight", highlightColor, 1000);
 				index++;
 			} else{
 				clearInterval(intervalId);
-				console.log("done");
 			}
 		}, interval);
 
 		index = 0;
 	}
 
+	//every color click is saved for easy comparison
 	function saveClick(event){
-		colorClicked = event.target.id;
+		colorClicked.push(event.target.id);
+
+		if(index >= colorButtonsQueue.length){
+			$("#current-score").text(++score);
+			startRound();
+		} else if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
+			endGame();
+		} else{
+			index++;
+			console.log(index);
+		}
+
+		console.log(colorClicked);
+		console.log(colorButtonsQueue);
+	}
+
+	function endGame(){
+
 	}
 
 	startButton.click(function(){
@@ -68,6 +87,6 @@
 		$("#yellow").click(saveClick);
 		$("#blue").click(saveClick);
 
-		playGame();
+		startRound();
 	});
 })();
