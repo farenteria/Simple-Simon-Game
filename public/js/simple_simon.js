@@ -6,6 +6,7 @@
 	var colorButtonsQueue = [];
 	var index = 0;
 	var highlightColor;
+	var colorClicked;
 
 	function playGame(){
 		addNewColor();
@@ -46,16 +47,27 @@
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
 				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
-				console.log("colorButtonsQueue[index].html + highlighted");
 				index++;
-			} 
+			} else{
+				clearInterval(intervalId);
+				console.log("done");
+			}
 		}, interval);
 
 		index = 0;
 	}
 
+	function saveClick(event){
+		colorClicked = event.target.id;
+	}
+
 	startButton.click(function(){
 		playing = true;
+		$("#green").click(saveClick);
+		$("#red").click(saveClick);
+		$("#yellow").click(saveClick);
+		$("#blue").click(saveClick);
+
 		playGame();
 	});
 })();
