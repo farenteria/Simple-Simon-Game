@@ -87,22 +87,27 @@
 	function checkClick(event){
 		colorClicked.push(event.target.id);
 
+		//this can cause problems if user clicks too quickly. 
 		if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
 			endGame();
 		} else{
 			index++;
 		}
 
+		/*
+			when our index reaches the length of the colorButtonsQueue, the user will have gotten
+			the pattern correctly. Thus, our index is reset, and a new round starts.
+		*/
 		if(index >= colorButtonsQueue.length){
 			$("#current-score").text(++score);
-			startRound();
 			index = 0;
+			startRound();
 		}
 	}
 
 	//Everything will get reset to ready for next game
 	function endGame(){
-		console.log("lose");
+		alert("You lose! Your score is " + score);
 		resetValues();
 	}
 
