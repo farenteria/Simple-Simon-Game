@@ -1,15 +1,27 @@
 "use strict";
 (function(){
-	var colors = ["green", "red", "yellow", "blue"];
-	var playing = false;
-	var startButton = $("#start-button");
-	var colorButtonsQueue = [];
-	var index = 0;
-	var delay = 5000;
-	var score = 0;
 	var highlightColor;
-	var colorClicked = [];
+	var colorClicked;
+	var colorButtonsQueue;
+	var colors;
+	var playing;
+	var startButton;
+	var index;
+	var score;
 
+	//sets and resets values for beginning new game
+	function resetValues(){
+		highlightColor;
+		colorClicked = [];
+		colorButtonsQueue = [];
+		colors = ["green", "red", "yellow", "blue"];
+		playing = false;
+		startButton = $("#start-button");
+		index = 0;
+		score = 0;
+	}
+
+	//will be called after user clicks pattern succesfully
 	function startRound(){
 		addNewColor();
 		iterateColors();
@@ -23,19 +35,15 @@
 		switch(random){
 			case 0:
 				id = $("#green");
-				highlightColor = "#12ea45";
 				break;
 			case 1:
 				id = $("#red");
-				highlightColor = "#f90909";
 				break;
 			case 2:
 				id = $("#yellow");
-				highlightColor = "#ffffd3";
 				break;
 			case 3:
 				id = $("#blue");
-				highlightColor = "#4989ff";
 				break;
 		}
 
@@ -46,17 +54,31 @@
 	function iterateColors(){
 		//we need to clear this array to check it again with each new round
 		colorClicked = [];
-		var interval = 1000;
+		var interval = 700;
 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
-				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
+				switch(colorButtonsQueue[index].attr("id")){
+					case "green":
+						highlightColor = "#12ea45";
+						break;
+					case "red":
+						highlightColor = "#f90909";
+						break;
+					case "yellow":
+						highlightColor = "#ffffd3";
+						break;
+					case "blue":
+						highlightColor = "#4989ff";
+						break;
+				}
+
+				$(colorButtonsQueue[index]).effect("highlight", {color: highlightColor});
 				index++;
 				
 			} else{
 				index = 0;
-				clearInterval(intervalId);
-	
+				clearInterval(intervalId);	
 			}
 		}, interval);
 	}
@@ -78,9 +100,13 @@
 		}
 	}
 
+	//Everything will get reset to ready for next game
 	function endGame(){
 		console.log("lose");
+		resetValues();
 	}
+
+	resetValues();
 
 	startButton.click(function(){
 		playing = true;
