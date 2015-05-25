@@ -44,16 +44,19 @@
 
 	//when each round starts, Simon will highlight the colors in the order you need to press 
 	function iterateColors(){
-		var interval = 700;
+		//we need to clear this array to check it again with each new round
+		colorClicked = [];
+		var interval = 1000;
 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
 				$(colorButtonsQueue[index]).effect("highlight", highlightColor);
 				index++;
+				
 			} else{
 				index = 0;
 				clearInterval(intervalId);
-				console.log(index);
+	
 			}
 		}, interval);
 	}
@@ -62,21 +65,17 @@
 	function checkClick(event){
 		colorClicked.push(event.target.id);
 
-		console.log(index);
 		if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
 			endGame();
 		} else{
 			index++;
-			console.log(index);
 		}
 
 		if(index >= colorButtonsQueue.length){
 			$("#current-score").text(++score);
 			startRound();
-		} 
-
-		console.log(colorClicked);
-		console.log(colorButtonsQueue);
+			index = 0;
+		}
 	}
 
 	function endGame(){
