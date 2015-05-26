@@ -5,7 +5,6 @@
 	var colorButtonsQueue;
 	var totalColors;
 	var playing;
-	var startButton  = $("#start-button");
 	var index;
 	var score;
 
@@ -14,7 +13,7 @@
 		highlightColor = "";
 		colorClicked = [];
 		colorButtonsQueue = [];
-		totalColors = 4; 
+		totalColors = 4; //green, red, yellow, and blue
 		playing = false;
 		index = 0;
 		score = 0;
@@ -65,6 +64,7 @@
 		$("#yellow").off();
 		$("#blue").off();
 
+		//this will highlight all colors based on the interval variable. 
 		var intervalId = setInterval(function(){
 			if(index < colorButtonsQueue.length){
 				switch(colorButtonsQueue[index].attr("id")){
@@ -123,10 +123,10 @@
 	//Everything will get reset to ready for next game
 	function endGame(){
 		//so clicking won't interfere after game.
-		$("#green").off("click");
-		$("#red").off("click");
-		$("#yellow").off("click");
-		$("#blue").off("click");
+		$("#green").off();
+		$("#red").off();
+		$("#yellow").off();
+		$("#blue").off();
 
 		alert("You lose! Your score is " + score);
 
@@ -140,7 +140,7 @@
 	//We use this as our setter for initial click
 	resetValues();
 
-	startButton.click(function(){
+	$("#start-button").on("click", function(){
 		playing = true;
 		startRound();
 	});
