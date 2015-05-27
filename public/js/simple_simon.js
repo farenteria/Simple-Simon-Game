@@ -131,17 +131,23 @@
 
 		playing = false;
 
-		if(score > highScore){
+		$("#top-circle").toggle("explode");
+		$("#bottom-circle").toggle("explode");
+
+		//gives us time to watch simon explode. 
+		var timeoutId = setTimeout(function(){
+			if(score > highScore){
 			highScore = score;
 			$("#high-score").text(highScore);
 			alert("You got a new high score of " + highScore + "!");
-		} else{
-			alert("You lose! Your score is " + score + ".");
-		}
+			} else{
+				alert("You lose! Your score is " + score + ".");
+			}
 
-		resetValues();
+			resetValues();
 
-		$("#start-button").text("Play Again?");
+			$("#start-button").text("Play Again?");
+		}, 800);
 	}
 
 	//We use this as our setter for initial click
@@ -150,6 +156,11 @@
 	highScore = 0;
 
 	$("#start-button").on("click", function(){
+		if($("#top-circle").is(":hidden")){
+			$("#top-circle").toggle("explode");
+			$("#bottom-circle").toggle("explode");
+		}
+
 		playing = true;
 		startRound();
 	});
