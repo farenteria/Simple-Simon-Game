@@ -131,8 +131,8 @@
 
 		playing = false;
 
-		$("#top-circle").toggle("explode");
-		$("#bottom-circle").toggle("explode");
+		$("#top-circle").effect("shake");
+		$("#bottom-circle").effect("shake");
 
 		//gives us time to watch simon explode. 
 		var timeoutId = setTimeout(function(){
@@ -156,11 +156,6 @@
 	highScore = 0;
 
 	$("#start-button").on("click", function(){
-		if($("#top-circle").is(":hidden")){
-			$("#top-circle").toggle("explode");
-			$("#bottom-circle").toggle("explode");
-		}
-
 		playing = true;
 		startRound();
 	});
