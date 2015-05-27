@@ -131,15 +131,16 @@
 
 		playing = false;
 
+		//Losing causes the disapproval of the great and mighty half-circles
 		$("#top-circle").effect("shake");
 		$("#bottom-circle").effect("shake");
 
-		//gives us time to watch simon explode. 
+		//gives us time to watch simon shake. 
 		var timeoutId = setTimeout(function(){
 			if(score > highScore){
-			highScore = score;
-			$("#high-score").text(highScore);
-			alert("You got a new high score of " + highScore + "!");
+				highScore = score;
+				$("#high-score").text(highScore);
+				alert("You got a new high score of " + highScore + "!");
 			} else{
 				alert("You lose! Your score is " + score + ".");
 			}
@@ -153,6 +154,7 @@
 	//We use this as our setter for initial click
 	resetValues();
 
+	//highscore will only be 0 on the first try. It should never be reset unless page is refreshed
 	highScore = 0;
 
 	$("#start-button").on("click", function(){
