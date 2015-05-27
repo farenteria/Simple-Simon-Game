@@ -7,6 +7,7 @@
 	var playing;
 	var index;
 	var score;
+	var highScore;
 
 	//sets and resets values for beginning new game
 	function resetValues(){
@@ -128,17 +129,25 @@
 		$("#yellow").off();
 		$("#blue").off();
 
-		alert("You lose! Your score is " + score);
-
 		playing = false;
+
+		if(score > highScore){
+			highScore = score;
+			$("#high-score").text(highScore);
+			alert("You got a new high score of " + highScore + "!");
+		} else{
+			alert("You lose! Your score is " + score + ".");
+		}
+
 		resetValues();
 
-		// console.log($("#current-score").text());
 		$("#start-button").text("Play Again?");
 	}
 
 	//We use this as our setter for initial click
 	resetValues();
+
+	highScore = 0;
 
 	$("#start-button").on("click", function(){
 		playing = true;
