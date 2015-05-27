@@ -1,7 +1,8 @@
-.section{
+.color-button{
 	height: 250px;
 }
 
+/* For our grids */
 #container{
 	width: 500px;
 	margin: 0 auto;
@@ -28,5 +29,7 @@
 }
 
 #lights-box{
-	border: 1px solid black;
+	border: 5px solid black;
+	border-radius: 50%;
+	overflow: hidden;
 }
