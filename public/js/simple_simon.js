@@ -64,6 +64,7 @@
 		$("#red").off();
 		$("#yellow").off();
 		$("#blue").off();
+		$("body").off();
 
 		//this will highlight all colors based on the interval variable. 
 		var intervalId = setInterval(function(){
@@ -93,16 +94,42 @@
 		}, interval);
 
 		//now that the highlighting has finished, we can safely add the even handlers
-		$("#green").on("click", checkClick);
-		$("#red").on("click", checkClick);
-		$("#yellow").on("click", checkClick);
-		$("#blue").on("click", checkClick);
+		$("#green").on("click", addClickColor);
+		$("#red").on("click", addClickColor);
+		$("#yellow").on("click", addClickColor);
+		$("#blue").on("click", addClickColor);
+		$("body").on("keypress", addKeyPressColor);
+	}
+
+	function addKeyPressColor(event){
+		var id;
+
+		switch(event.which){
+			case 103:
+				id = "green";
+				break;
+			case 114:
+				id = "red";
+				break;
+			case 121:
+				id = "yellow";
+				break;
+			case 98:
+				id = "blue";
+				break;
+		}
+
+		colorClicked.push(id);
+		checkClick();
+	}
+
+	function addClickColor(event){
+		colorClicked.push(event.target.id);
+		checkClick();
 	}
 
 	//every color click is saved for easy comparison
 	function checkClick(event){
-		colorClicked.push(event.target.id);
-
 		//this can cause problems if user clicks too quickly, or in between games 
 		if(colorClicked[index] != colorButtonsQueue[index].attr("id")){
 			endGame();
@@ -128,6 +155,7 @@
 		$("#red").off();
 		$("#yellow").off();
 		$("#blue").off();
+		$("body").off();
 
 		playing = false;
 
