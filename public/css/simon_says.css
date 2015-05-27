@@ -1,13 +1,10 @@
-.color-button{
-	height: 250px;
-}
-
 /* For our grids */
 #container{
 	width: 500px;
 	margin: 0 auto;
 }
 
+/* What goes inside our circle */
 #green{
 	background-color: #0CA02F;
 }
@@ -24,12 +21,25 @@
 	background-color: #1D60E5;
 }
 
-#start-button{
-	margin: 1px;
+/* This section is for the circle decoration.
+   I am aware that this isn't a circle */
+.circle-common{
+	overflow: hidden;
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+	padding: 0;
 }
 
-#lights-box{
-	border: 5px solid black;
-	border-radius: 50%;
-	overflow: hidden;
+.color-button{
+	height: 150px;
+}
+
+#top-circle{
+	border-radius: 100px 100px 0 0;
+	border-top: 5px solid black;
+}
+
+#bottom-circle{
+	border-radius: 0 0 100px 100px;
+	border-bottom: 5px solid black;
 }

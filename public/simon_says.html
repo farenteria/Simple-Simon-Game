@@ -14,19 +14,28 @@
 			<button class="row" id="start-button">Play Game</button>
 		<header>
 
-		<div id="lights-box">
-			<div class="row">		
-				<div id="green" class="column one-half section color-button"></div>
-				<div id="red" class="column one-half section color-button"></div>
+		<div class="row">
+			<div class="column one-fourth">
+				<p>Score</p>
+				<p id="current-score">0</p>
 			</div>
-			<div class="row">
-				<div id="yellow" class="column one-half section color-button"></div>
-				<div id="blue" class="column one-half section color-button"></div>
+			<div class="column three-fourth circle-common" id="top-circle">
+				<div>		
+					<div id="green" class="column one-half color-button"></div>
+					<div id="red" class="column one-half color-button"></div>
+				</div>
 			</div>
 		</div>
 
-		<p>Score</p>
-		<p>0</p>
+		<div class="row">
+			<div class="column one-fourth">
+				<p>High Score</p>
+				<p>0</p></div>
+			<div class="column three-fourth circle-common" id="bottom-circle">
+				<div id="yellow" class="column one-half color-button"></div>
+				<div id="blue" class="column one-half color-button"></div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Hosted jquery library -->

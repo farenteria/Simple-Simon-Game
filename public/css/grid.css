@@ -64,6 +64,10 @@ html{
 	width: 50%;
 }
 
+.column.three-fourth{
+	width: 75%;
+}
+
 /* these following classes will offset columns to the right*/
 .offset-one-fourth{
 	margin-left: 25%;
